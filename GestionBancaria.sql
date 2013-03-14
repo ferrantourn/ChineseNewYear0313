@@ -1121,6 +1121,18 @@ begin
 end
 
 GO
+
+create proc spListarPagosPorPrestamo
+@IdSucursal int,
+@IdPrestamo int
+as
+begin
+
+	select * from Pagos where Pagos.IdPrestamo=@IdPrestamo and Pagos.NumeroSucursal=@IdSucursal
+	
+end
+
+GO
 --INSERTAMOS VALORES PREDETERMINADOS
 ------------------------------------
 

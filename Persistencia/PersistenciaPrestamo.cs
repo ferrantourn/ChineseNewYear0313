@@ -105,7 +105,69 @@ namespace Persistencia
                 conexion.Close();
             }
         }
-       
+
+        public List<Pago> ListarPagos(Sucursal s, Prestamo p)
+        {
+
+            List<Pago> listaPagos = new List<Pago>();
+            SqlConnection conexion = new SqlConnection(Conexion.Cnn);
+            SqlCommand cmd = Conexion.GetCommand("spListarPagosPorPrestamo", conexion, CommandType.StoredProcedure);
+            SqlParameter _numSucursal = new SqlParameter("@IdSucursal", s.IDSUCURSAL);
+            SqlParameter _idPrestamo = new SqlParameter("@IdPrestamo", p.IDPRESTAMO);
+            cmd.Parameters.Add(_numSucursal);
+            cmd.Parameters.Add(_idPrestamo);
+            SqlDataReader _Reader;
+            try
+            {
+                /*IdRecibo int identity primary key not null,
+				   IdEmpleado int,
+				   IdPrestamo int,
+				   NumeroSucursal int,
+				   Monto float not null,
+				   Fecha datetime not null,
+				   NumeroCuota int not null,*/
+                conexion.Open();
+                _Reader = cmd.ExecuteReader();
+                int idRecibo, idPrestamo, idSucursal, idEmpleado, NumeroCuota;
+                decimal monto;
+                DateTime Fecha;
+
+                while (_Reader.Read())
+                {
+                    idRecibo = Convert.ToInt32(_Reader["IdRecibo"]);
+                    idPrestamo = Convert.ToInt32(_Reader["IdPrestamo"]);
+                    idSucursal = Convert.ToInt32(_Reader["Cuotas"]);
+                    idEmpleado = Convert.ToInt32(_Reader["IdCliente"]);
+                    NumeroCuota = Convert.ToInt32(_Reader["NumeroCuota"]);
+                    monto = Convert.ToDecimal(_Reader["Monto"]);
+                    Fecha = Convert.ToDateTime(_Reader["Fecha"]);
+                    
+                    Pago p = new Pago
+                    {
+                        PRESTAMO = new Prestamo { IDPRESTAMO = idPrestamo},
+                        EMPLEADO = new Empleado { CI = idEmpleado },
+                        FECHAPAGO = Fecha,
+                        IDRECIBO = idRecibo,
+                        NUMEROCUOTA = NumeroCuota,
+                        MONTO = monto
+                    };
+
+                    listaPagos.Add(p);
+                }
+                _Reader.Close();
+
+                return listaPagos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
         public List<Prestamo> ListarPrestamos(Sucursal s, bool cancelado)
         {
 

@@ -7,19 +7,29 @@ namespace Logica
 {
     public class FabricaLogica
     {
-        /*public static ILogicaCarpetas getLogicaCarpetas()
+        public static ILogicaCotizacion getLogicaCotizacion()
         {
-            return LogicaCarpetas.GetInstancia();
+            return LogicaCotizacion.GetInstancia();
         }
 
-        public static ILogicaEmails getLogicaEmails()
+        public static ILogicaCuentas getLogicaCuentas()
         {
-            return LogicaEmails.GetInstancia();
+            return LogicaCuentas.GetInstancia();
         }
 
-        public static ILogicaUsuario getLogicaUsuario()
+        public static ILogicaUsuarios getLogicaUsuario()
         {
-            return LogicaUsuario.GetInstancia();
-        }*/
+            return LogicaUsuarios.GetInstancia();
+        }
+
+        public static ILogicaPagos getLogicaPagos()
+        {
+            return LogicaPagos.GetInstancia();
+        }
+
+        public static ILogicaPrestamo getLogicaPrestamo()
+        {
+            return LogicaPrestamo.GetInstancia();
+        }
     }
 }

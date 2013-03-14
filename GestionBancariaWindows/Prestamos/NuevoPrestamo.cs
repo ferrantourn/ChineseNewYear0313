@@ -19,7 +19,7 @@ namespace GestionBancariaWindows
             InitializeComponent();
         }
 
-        public Prestamo PRESTAMO { get; set; }
+        //public Prestamo PRESTAMO { get; set; }
 
 
 
@@ -37,22 +37,22 @@ namespace GestionBancariaWindows
                 }
 
 
-                if (PRESTAMO != null)
-                {
-                    cmbCliente.SelectedValue = PRESTAMO.CLIENTE.CI;
-                    txtMonto.Text = Convert.ToString(PRESTAMO.MONTO);
-                    cmbMonedaRetiro.Text = PRESTAMO.MONEDA;
-                    dtpFecha.Value = PRESTAMO.FECHAEMITIDO;
-                    numericCuotas.Value = PRESTAMO.TOTALCUOTAS;
-                    chkCancelado.Checked = PRESTAMO.CANCELADO;
+                //if (PRESTAMO != null)
+                //{
+                //    cmbCliente.SelectedValue = PRESTAMO.CLIENTE.CI;
+                //    txtMonto.Text = Convert.ToString(PRESTAMO.MONTO);
+                //    cmbMonedaRetiro.Text = PRESTAMO.MONEDA;
+                //    dtpFecha.Value = PRESTAMO.FECHAEMITIDO;
+                //    numericCuotas.Value = PRESTAMO.TOTALCUOTAS;
+                //    chkCancelado.Checked = PRESTAMO.CANCELADO;
 
-                    btnGuardar.Text = "Actualizar";
+                //    btnGuardar.Text = "Actualizar";
 
-                }
-                else
-                {
-                    //btnEliminar.Visible = false;
-                }
+                //}
+                //else
+                //{
+                //    //btnEliminar.Visible = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -119,46 +119,54 @@ namespace GestionBancariaWindows
             {
                 if (this.ValidateChildren(ValidationConstraints.Enabled) && ValidateForm())
                 {
-                    bool editar = false;
-                    if (PRESTAMO == null)
-                    {
-                        PRESTAMO = new Prestamo();
-                        PRESTAMO.CLIENTE = new Cliente();
-                        PRESTAMO.SUCURSAL = new Sucursal();
-                    }
-                    else
-                    {
-                        editar = true;
-                    }
+                    //bool editar = false;
+                    //if (PRESTAMO == null)
+                    //{
+                    //    PRESTAMO = new Prestamo();
+                    //    PRESTAMO.CLIENTE = new Cliente();
+                    //    PRESTAMO.SUCURSAL = new Sucursal();
+                    //}
+                    //else
+                    //{
+                    //    editar = true;
+                    //}
 
                     //CARGAMOS INFORMACION DEL PRESTAMO
                     //---------------------------------
+                    Prestamo PRESTAMO = new Prestamo();
+
+                    PRESTAMO.CLIENTE = new Cliente();
+                    PRESTAMO.SUCURSAL = new Sucursal();
+
                     PRESTAMO.CANCELADO = chkCancelado.Checked;
                     PRESTAMO.CLIENTE.CI = Convert.ToInt32(cmbCliente.SelectedValue);
                     PRESTAMO.FECHAEMITIDO = dtpFecha.Value;
                     PRESTAMO.MONEDA = cmbMonedaRetiro.Text;
                     PRESTAMO.MONTO = Convert.ToDecimal(txtMonto.Text);
                     PRESTAMO.SUCURSAL.IDSUCURSAL = 1; //** AQUI VA LA SUCURSAL DEL USUARIO LOGUEADO.
+                    PRESTAMO.TOTALCUOTAS = Convert.ToInt32(numericCuotas.Value);
+
                     //** HACER EL LOGIN DE USUARIO ANTES DE ENTREGAR Y CORREGIR ESTO
 
 
 
                     //GUARDAMOS LA INFORMACION EN LA BASE DE DATOS
                     //---------------------------------------------
+                    //if (editar)
+                    //{
+                    //    lu.ActualizarPrestamo(PRESTAMO);
+                    //    lblInfo.Text = "Prestamo actualizado correctamente";
+                    //}
+                    //else
+                    //{
                     LogicaPrestamo lu = new LogicaPrestamo();
-                    if (editar)
-                    {
-                        lu.ActualizarPrestamo(PRESTAMO);
-                        lblInfo.Text = "Prestamo actualizado correctamente";
-                    }
-                    else
-                    {
+
                         lu.AltaPrestamo(PRESTAMO);
 
                         lblInfo.Text = "Prestamo ingresado correctamente";
                         //LIMPIAMOS EL FORMULARIO
                         LimpiarFormulario();
-                    }
+                    //}
                 }
             }
             catch (ErrorUsuarioYaExiste uex)
@@ -179,7 +187,7 @@ namespace GestionBancariaWindows
                 txtMonto.Text = "";
                 cmbMonedaRetiro.SelectedValue = "";
                 dtpFecha.Value = DateTime.Now;
-                numericCuotas.Value = 0;
+                numericCuotas.Value = numericCuotas.Minimum;
                 chkCancelado.Checked = false;
 
             }

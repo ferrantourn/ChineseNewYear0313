@@ -83,7 +83,7 @@ namespace GestionBancariaWindows
             try
             {
                 LogicaPrestamo lp = new LogicaPrestamo();
-                lp.ActualizarPrestamo(PRESTAMO);
+                lp.CancelarPrestamo(PRESTAMO);
 
                 lblInfo.Text = "El prestamo fue cancelado.";
                 btnAceptar.Visible = false;

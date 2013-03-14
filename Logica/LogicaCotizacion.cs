@@ -7,8 +7,21 @@ using Persistencia;
 using ExcepcionesPersonalizadas;
 namespace Logica
 {
-    public class LogicaCotizacion : ILogicaCotizacion
+    internal class LogicaCotizacion : ILogicaCotizacion
     {
+        //singleton
+        //------------------------------------------------
+        private static LogicaCotizacion _instancia = null;
+        private LogicaCotizacion() { }
+
+        public static LogicaCotizacion GetInstancia()
+        {
+            if (_instancia == null)
+                _instancia = new LogicaCotizacion();
+
+            return _instancia;
+        }
+
 
         public List<Cotizacion> ListarCotizaciones()
         {
@@ -33,7 +46,7 @@ namespace Logica
             catch (ErrorCotizacionYaExiste ex)
             {
                 throw ex;
-            }   
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -71,7 +84,7 @@ namespace Logica
             try
             {
                 PersistenciaCotizacion pc = new PersistenciaCotizacion();
-                pc.ModificarCotizacion(s,e);
+                pc.ModificarCotizacion(s, e);
             }
             catch (Exception ex)
             {

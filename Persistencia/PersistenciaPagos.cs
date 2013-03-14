@@ -92,17 +92,18 @@ namespace Persistencia
             }
         }
 
-        //public void PagarCuota(Cuota C)
-        //{
-        //    try
-        //    {
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //}
+        public List<Pago> ListarTodosPagosPrestamo(Prestamo p)
+        {
+            try
+            {
+                List<Pago> pagos = new List<Pago>();
+                return pagos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

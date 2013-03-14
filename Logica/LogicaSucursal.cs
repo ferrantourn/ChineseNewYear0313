@@ -9,6 +9,19 @@ namespace Logica
 {
     public class LogicaSucursal : ILogicaSucursal
     {
+         //singleton
+        //------------------------------------------------
+        private static LogicaSucursal _instancia = null;
+        private LogicaSucursal() { }
+
+        public static LogicaSucursal GetInstancia()
+        {
+            if (_instancia == null)
+                _instancia = new LogicaSucursal();
+
+            return _instancia;
+        }
+
 
         public List<Sucursal> ListarSucursales()
         {

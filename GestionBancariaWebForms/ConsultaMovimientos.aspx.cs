@@ -6,10 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.XPath;
 using System.Xml;
-using Logica;
-using Entidades;
+//using Logica;
+//using Entidades;
 using ExcepcionesPersonalizadas;
-//using GestionBancariaWS;
+using GestionBancariaWS;
 
 public partial class ConsultaMovimientos : System.Web.UI.Page
 {
@@ -55,24 +55,24 @@ public partial class ConsultaMovimientos : System.Web.UI.Page
         {
             if (e.CommandName.ToUpper() == "SELECCIONAR")
             {
-                //ServiceGestionBancaria sm = new ServiceGestionBancaria();
-                //Cuenta c = new Cuenta();
-                //c.IDCUENTA = Convert.ToInt32(e.CommandArgument);
+                ServiceGestionBancaria sm = new ServiceGestionBancaria();
+                Cuenta c = new Cuenta();
+                c.IDCUENTA = Convert.ToInt32(e.CommandArgument);
 
-                ////XmlNode nodos = sm.ConsultaMovimientosCuenta(c, Convert.ToDateTime(txtFecha.Text));
+                XmlNode nodos = sm.ConsultaMovimientos(c, Convert.ToDateTime(txtFecha.Text));
 
-                //XmlDocument myXmlDocumentObject = new XmlDocument();
+                XmlDocument myXmlDocumentObject = new XmlDocument();
 
-                //myXmlDocumentObject.AppendChild(myXmlDocumentObject.ImportNode(nodos, true));
+                myXmlDocumentObject.AppendChild(myXmlDocumentObject.ImportNode(nodos, true));
 
-                ////XmlDocument _DocumentoXML = new XmlDocument();
+                //XmlDocument _DocumentoXML = new XmlDocument();
 
-                ////myXmlDocumentObject.Load(_camino); //camino tiene el path al document xml
+                //myXmlDocumentObject.Load(_camino); //camino tiene el path al document xml
 
-                //XPathNavigator _Navegador = myXmlDocumentObject.CreateNavigator();
-                //XmlMovimientos.XPathNavigator = _Navegador;
+                XPathNavigator _Navegador = myXmlDocumentObject.CreateNavigator();
+                XmlMovimientos.XPathNavigator = _Navegador;
 
-                //XmlMovimientos.TransformSource = Server.MapPath("~/Movimientos.xslt");
+                XmlMovimientos.TransformSource = Server.MapPath("~/Movimientos.xslt");
             }
         }
         catch (Exception ex)

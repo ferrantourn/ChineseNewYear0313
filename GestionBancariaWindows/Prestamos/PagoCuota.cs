@@ -23,7 +23,7 @@ namespace GestionBancariaWindows
             {
                 lblInfo.Text = "";
 
-                
+
                 LogicaSucursal lu = new LogicaSucursal();
                 List<Sucursal> sucursales = lu.ListarSucursales();
 
@@ -47,18 +47,24 @@ namespace GestionBancariaWindows
                 {
                     LogicaPrestamo lu = new LogicaPrestamo();
                     Prestamo p = new Prestamo { IDPRESTAMO = numPrestamo };
+
+                    p = (Prestamo)lu.BuscarPrestamo(p);
                     if (p != null)
                     {
-                        p = (Prestamo)lu.BuscarPrestamo(p);
-
                         txtCliente.Text = p.CLIENTE.NOMBRE + " " + p.CLIENTE.APELLIDO;
-                        txtMontoaPagar.Text = Convert.ToString(p.MONTO);
+
+                        //Calculamos el monto a pagar.
+                        //---------------------------
+                        decimal montoCuotaPagar = p.MONTO / p.TOTALCUOTAS;
+                        txtMontoaPagar.Text = montoCuotaPagar.ToString("c");
 
                         PRESTAMO = p;
                     }
                     else
                     {
+                        PRESTAMO = null;
                         lblInfo.Text = "No se encontro ningun prestamo.";
+                        LimpiarFormulario();
                     }
 
                 }

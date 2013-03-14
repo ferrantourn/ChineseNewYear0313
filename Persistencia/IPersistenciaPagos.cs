@@ -10,5 +10,6 @@ namespace Persistencia
     {
         Pago ObtenerUltimoPagoPrestamo(Prestamo p);
         List<Pago> ListarUltimoPagoPrestamos(Sucursal s);
+        List<Pago> ListarTodosPagosPrestamo(Prestamo p);
     }
 }

@@ -7,8 +7,23 @@ using Persistencia;
 
 namespace Logica
 {
-    public class LogicaPagos : ILogicaPagos
+    internal class LogicaPagos : ILogicaPagos
     {
+
+         //singleton
+        //------------------------------------------------
+        private static LogicaPagos _instancia = null;
+        private LogicaPagos() { }
+
+        public static LogicaPagos GetInstancia()
+        {
+            if (_instancia == null)
+                _instancia = new LogicaPagos();
+
+            return _instancia;
+        }
+
+
         public void PagarCuota(Prestamo p)
         {
             try
@@ -27,8 +42,8 @@ namespace Logica
             try
             {
                 PersistenciaPagos ps = new PersistenciaPagos();
-                //return ps.ListarPrestamo();
-                return null;
+                return ps.ListarTodosPagosPrestamo(p);
+                //return null;
             }
             catch (Exception ex)
             {
@@ -36,32 +51,32 @@ namespace Logica
             }
         }
 
-        public void EliminarPago(Pago p)
-        {
-            try
-            {
-                PersistenciaPagos pc = new PersistenciaPagos();
-                //pc.EliminarPrestamo(s);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public void EliminarPago(Pago p)
+        //{
+        //    try
+        //    {
+        //        PersistenciaPagos pc = new PersistenciaPagos();
+        //        pc.EliminarPrestamo(s);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public Pago BuscarPago(Pago p)
-        {
-            try
-            {
-                PersistenciaPagos pc = new PersistenciaPagos();
-                //return pc.BuscaPrestamo();
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public Pago BuscarPago(Pago p)
+        //{
+        //    try
+        //    {
+        //        PersistenciaPagos pc = new PersistenciaPagos();
+        //        return pc.();
+        //        return null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
     }
 }

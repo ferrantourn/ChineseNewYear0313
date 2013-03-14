@@ -10,8 +10,8 @@ namespace Logica
     {
          void PagarCuota(Prestamo p);
          List<Pago> ListarPagos(Prestamo p);
-         void EliminarPago(Pago p);
-         Pago BuscarPago(Pago p);
+         //void EliminarPago(Pago p);
+         //Pago BuscarPago(Pago p);
 
 
     }

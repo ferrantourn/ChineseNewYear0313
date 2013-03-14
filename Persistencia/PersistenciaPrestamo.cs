@@ -21,15 +21,17 @@ namespace Persistencia
 
                 SqlCommand cmd = Conexion.GetCommand("AltaPrestamo", conexion, CommandType.StoredProcedure);
 
-                SqlParameter _IdCliente = new SqlParameter("@IdCliente", P.CLIENTE);
+                SqlParameter _IdCliente = new SqlParameter("@IdCliente", P.CLIENTE.CI);
+                SqlParameter _IdSucursal = new SqlParameter("@NumeroSucursal", P.SUCURSAL.IDSUCURSAL);
                 SqlParameter _Fecha = new SqlParameter("@Fecha", P.FECHAEMITIDO);
                 SqlParameter _Cuotas = new SqlParameter("@Cuotas", P.TOTALCUOTAS);
                 SqlParameter _Moneda = new SqlParameter("@Moneda", P.MONEDA);
-                SqlParameter _Monto = new SqlParameter("@Moneda", P.MONTO);
+                SqlParameter _Monto = new SqlParameter("@Monto", P.MONTO);
                 SqlParameter _retorno = new SqlParameter("@Mont", SqlDbType.Int);
                 _retorno.Direction = ParameterDirection.ReturnValue;
 
                 cmd.Parameters.Add(_IdCliente);
+                cmd.Parameters.Add(_IdSucursal);
                 cmd.Parameters.Add(_Fecha);
                 cmd.Parameters.Add(_Cuotas);
                 cmd.Parameters.Add(_Moneda);

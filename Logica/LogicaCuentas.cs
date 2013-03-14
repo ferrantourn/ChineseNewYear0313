@@ -9,9 +9,20 @@ using System.Xml;
 
 namespace Logica
 {
-    public class LogicaCuentas : ILogicaCuentas
+    internal class LogicaCuentas : ILogicaCuentas
     {
+         //singleton
+        //------------------------------------------------
+        private static LogicaCuentas _instancia = null;
+        private LogicaCuentas() { }
 
+        public static LogicaCuentas GetInstancia()
+        {
+            if (_instancia == null)
+                _instancia = new LogicaCuentas();
+
+            return _instancia;
+        }
 
         public void AltaCuenta(Cuenta c)
         {

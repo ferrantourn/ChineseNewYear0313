@@ -7,8 +7,22 @@ using Persistencia;
 
 namespace Logica
 {
-    public class LogicaPrestamo : ILogicaPrestamo
+    internal class LogicaPrestamo : ILogicaPrestamo
     {
+         //singleton
+        //------------------------------------------------
+        private static LogicaPrestamo _instancia = null;
+        private LogicaPrestamo() { }
+
+        public static LogicaPrestamo GetInstancia()
+        {
+            if (_instancia == null)
+                _instancia = new LogicaPrestamo();
+
+            return _instancia;
+        }
+
+
 
         public decimal CalcularMontoCuotaPrestamo(Prestamo p)
         {
@@ -68,13 +82,13 @@ namespace Logica
 
 
 
-        public List<Prestamo> ListarPrestamo()
+        public List<Prestamo> ListarPrestamo(Sucursal s, bool Cancelado)
         {
             try
             {
                 PersistenciaPrestamo ps = new PersistenciaPrestamo();
-                //return ps.ListarPrestamo();
-                return null;
+                return ps.ListarPrestamos(s, Cancelado);
+                //return null;
             }
             catch (Exception ex)
             {
@@ -82,12 +96,12 @@ namespace Logica
             }
         }
 
-        public void AltaPrestamo(Prestamo s)
+        public void AltaPrestamo(Prestamo p)
         {
             try
             {
                 PersistenciaPrestamo pc = new PersistenciaPrestamo();
-                //pc.AltaPrestamo(c);
+                 pc.AltaPrestamo(p);
             }
             catch (Exception ex)
             {
@@ -121,20 +135,7 @@ namespace Logica
             }
         }
 
-        public void ActualizarPrestamo(Prestamo c) //en teoría no se debería poder modificar un presamo, solo buscarlo, o pagar cuotas y cancelar
-        {
-            try
-            {
-                PersistenciaPrestamo pc = new PersistenciaPrestamo();
-                //pc.ModificarPrestamo(c);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
+     
         public List<Pago> IsPrestamoCancelado(ref Prestamo p)
         {
             try

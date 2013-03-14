@@ -32,13 +32,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.chkCancelado = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.numericCuotas = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
+            this.ClientesbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.cmbMonedaRetiro = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,9 +49,6 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.txtMonto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblInfo = new System.Windows.Forms.Label();
-            this.ClientesbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderMonto = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderMoneda = new System.Windows.Forms.ErrorProvider(this.components);
@@ -91,6 +91,18 @@
             this.panel2.Size = new System.Drawing.Size(621, 47);
             this.panel2.TabIndex = 1;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.CausesValidation = false;
+            this.btnCancelar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnCancelar.Location = new System.Drawing.Point(0, 0);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(110, 47);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // btnGuardar
             // 
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Right;
@@ -123,6 +135,14 @@
             this.panel3.Size = new System.Drawing.Size(621, 253);
             this.panel3.TabIndex = 2;
             // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Location = new System.Drawing.Point(13, 234);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(0, 13);
+            this.lblInfo.TabIndex = 31;
+            // 
             // chkCancelado
             // 
             this.chkCancelado.AutoSize = true;
@@ -145,9 +165,19 @@
             // numericCuotas
             // 
             this.numericCuotas.Location = new System.Drawing.Point(125, 104);
+            this.numericCuotas.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericCuotas.Name = "numericCuotas";
             this.numericCuotas.Size = new System.Drawing.Size(120, 20);
             this.numericCuotas.TabIndex = 28;
+            this.numericCuotas.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label5
             // 
@@ -169,6 +199,10 @@
             this.cmbCliente.Size = new System.Drawing.Size(121, 21);
             this.cmbCliente.TabIndex = 25;
             this.cmbCliente.ValueMember = "CI";
+            // 
+            // ClientesbindingSource
+            // 
+            this.ClientesbindingSource.DataSource = typeof(Entidades.Cliente);
             // 
             // label3
             // 
@@ -231,30 +265,6 @@
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Monto";
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.CausesValidation = false;
-            this.btnCancelar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnCancelar.Location = new System.Drawing.Point(0, 0);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(110, 47);
-            this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // lblInfo
-            // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(13, 234);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(0, 13);
-            this.lblInfo.TabIndex = 31;
-            // 
-            // ClientesbindingSource
-            // 
-            this.ClientesbindingSource.DataSource = typeof(Entidades.Cliente);
             // 
             // errorProvider
             // 

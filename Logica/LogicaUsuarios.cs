@@ -6,8 +6,22 @@ using ExcepcionesPersonalizadas;
 
 namespace Logica
 {
-    public class LogicaUsuarios : ILogicaUsuarios
+    internal class LogicaUsuarios : ILogicaUsuarios
     {
+
+        //singleton
+        //------------------------------------------------
+        private static LogicaUsuarios _instancia = null;
+        private LogicaUsuarios() { }
+
+        public static LogicaUsuarios GetInstancia()
+        {
+            if (_instancia == null)
+                _instancia = new LogicaUsuarios();
+
+            return _instancia;
+        }
+
 
         public void AltaUsuario(Usuario u)
         {

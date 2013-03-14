@@ -31,5 +31,10 @@ namespace Logica
         {
             return LogicaPrestamo.GetInstancia();
         }
+
+        public static ILogicaSucursal getLogicaSucursal()
+        {
+            return LogicaSucursal.GetInstancia();
+        }
     }
 }

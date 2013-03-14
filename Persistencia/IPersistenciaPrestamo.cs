@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaPrestamo
+    public interface IPersistenciaPrestamo
     {
 
         void AltaPrestamo(Prestamo P);

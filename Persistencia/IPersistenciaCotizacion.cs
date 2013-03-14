@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaCotizacion
+    public interface IPersistenciaCotizacion
     {
         List<Cotizacion> ListarCotizaciones();
         void AltaCotizacion(Cotizacion s);

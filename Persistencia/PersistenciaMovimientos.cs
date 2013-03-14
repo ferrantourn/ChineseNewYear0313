@@ -11,8 +11,17 @@ using System.Data;
 namespace Persistencia
 {
 
-    public class PersistenciaMovimientos : IPersistenciaMovimientos
+    internal class PersistenciaMovimientos : IPersistenciaMovimientos
     {
+        private static PersistenciaMovimientos _instancia = null;
+
+        private PersistenciaMovimientos() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaMovimientos GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaMovimientos());
+        }
         public void RealizarMovimiento(Movimiento m)
         {
             SqlConnection conexion = new SqlConnection(Conexion.Cnn);

@@ -8,8 +8,18 @@ using System.Transactions;
 
 namespace Persistencia
 {
-    public class PersistenciaEmpleados: IPersistenciaEmpleados
+    internal class PersistenciaEmpleados: IPersistenciaEmpleados
     {
+        private static PersistenciaEmpleados _instancia = null;
+
+        private PersistenciaEmpleados() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaEmpleados GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaEmpleados());
+        }
+
         public Empleado LoginEmpleado(string NombreUsuario, string Pass)
         {
             SqlConnection conexion = new SqlConnection(Conexion.Cnn);

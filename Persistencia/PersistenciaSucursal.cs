@@ -9,9 +9,17 @@ using ExcepcionesPersonalizadas;
 
 namespace Persistencia
 {
-    public class PersistenciaSucursal: IPersistenciaSucursal
+    internal class PersistenciaSucursal: IPersistenciaSucursal
     {
+        private static PersistenciaSucursal _instancia = null;
 
+        private PersistenciaSucursal() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaSucursal GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaSucursal());
+        }
 
         public void AltaSucursal(Sucursal L)
         {

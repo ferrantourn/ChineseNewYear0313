@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaSucursal
+    public interface IPersistenciaSucursal
     {
         void AltaSucursal(Sucursal L);
         decimal ArqueoCaja(DateTime Fecha, string Moneda, Empleado E);

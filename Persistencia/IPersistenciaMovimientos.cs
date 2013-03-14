@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaMovimientos
+    public interface IPersistenciaMovimientos
     {
         void RealizarMovimiento(Movimiento m);
         void RealizarTransferencia(Movimiento morigen, Movimiento mdestino);

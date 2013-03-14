@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaClientes
+    public interface IPersistenciaClientes
     {
         void AltaCliente(Cliente c);
         Cliente BuscarClientePorCi(Cliente cliente);

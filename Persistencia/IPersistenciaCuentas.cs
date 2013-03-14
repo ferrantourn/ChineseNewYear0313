@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaCuentas
+    public interface IPersistenciaCuentas
     {
         void AltaCuenta(Cuenta c);
         List<Cuenta> ListarCuentas();

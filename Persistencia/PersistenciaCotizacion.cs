@@ -9,9 +9,17 @@ using ExcepcionesPersonalizadas;
 
 namespace Persistencia
 {
-    public class PersistenciaCotizacion : IPersistenciaCotizacion
+    internal class PersistenciaCotizacion : IPersistenciaCotizacion
     {
+        private static PersistenciaCotizacion _instancia = null;
 
+        private PersistenciaCotizacion() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaCotizacion GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaCotizacion());
+        }
 
         public List<Cotizacion> ListarCotizaciones()
         {

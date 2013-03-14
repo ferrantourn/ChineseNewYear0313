@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaPagos
+    public interface IPersistenciaPagos
     {
         Pago ObtenerUltimoPagoPrestamo(Prestamo p);
         List<Pago> ListarUltimoPagoPrestamos(Sucursal s);

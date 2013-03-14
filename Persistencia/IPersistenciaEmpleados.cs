@@ -6,7 +6,7 @@ using Entidades;
 
 namespace Persistencia
 {
-    interface IPersistenciaEmpleados
+    public interface IPersistenciaEmpleados
     {
         Empleado LoginEmpleado(string NombreUsuario, string Pass);
         void AltaEmpleado(Empleado e);

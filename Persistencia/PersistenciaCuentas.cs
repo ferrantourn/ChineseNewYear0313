@@ -10,8 +10,22 @@ using System.Transactions;
 
 namespace Persistencia
 {
-    public class PersistenciaCuentas: IPersistenciaCuentas
+
+
+    internal class PersistenciaCuentas: IPersistenciaCuentas
     {
+
+        private static PersistenciaCuentas _instancia = null;
+
+        private PersistenciaCotizacion() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaCuentas GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaCuentas());
+        }
+
+
         /// <summary>
         /// Ingresa un nuevo Cuenta en el sistema
         /// </summary>

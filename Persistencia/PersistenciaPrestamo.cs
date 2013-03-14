@@ -10,8 +10,17 @@ using System.Transactions;
 
 namespace Persistencia
 {
-    public class PersistenciaPrestamo : IPersistenciaPrestamo
+    internal class PersistenciaPrestamo : IPersistenciaPrestamo
     {
+        private static PersistenciaPrestamo _instancia = null;
+
+        private PersistenciaPrestamo() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaPrestamo GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaPrestamo());
+        }
         public void AltaPrestamo(Prestamo P)
         {
             SqlConnection conexion = new SqlConnection(Conexion.Cnn);

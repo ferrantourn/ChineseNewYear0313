@@ -9,8 +9,17 @@ using System.Data;
 
 namespace Persistencia
 {
-    public class PersistenciaPagos : IPersistenciaPagos
+    internal class PersistenciaPagos : IPersistenciaPagos
     {
+        private static PersistenciaPagos _instancia = null;
+
+        private PersistenciaPagos() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaPagos GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaPagos());
+        }
         public Pago ObtenerUltimoPagoPrestamo(Prestamo p)
         {
             SqlConnection conexion = new SqlConnection(Conexion.Cnn);

@@ -8,10 +8,19 @@ using System.Transactions;
 
 namespace Persistencia
 {
-    public class PersistenciaClientes : IPersistenciaClientes
+    internal class PersistenciaClientes : IPersistenciaClientes
     {
 
 
+        private static PersistenciaClientes _instancia = null;
+
+        private PersistenciaClientes() { }
+
+        //ESTE METODO TIENE QUE SER DE CLASE Y PUBLICO!! (TAMBIEN PODRIA SER UNA PROPIEDAD QUE SOLO CONTENGA UN GET)
+        public static PersistenciaClientes GetInstancia()
+        {
+            return _instancia ?? (_instancia = new PersistenciaClientes());
+        }
         /// <summary>
         /// Ingresa un nuevo cliente en el sistema
         /// </summary>

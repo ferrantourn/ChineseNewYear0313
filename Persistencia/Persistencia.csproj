@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FabricaPersistencia.cs" />
     <Compile Include="IPersistenciaSucursal.cs" />
     <Compile Include="IPersistenciaPrestamo.cs" />
     <Compile Include="IPersistenciaPagos.cs" />
